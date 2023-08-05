@@ -1,5 +1,6 @@
 import { createError } from "../error.js";
 import User from "../models/User.js";
+import Video from "../models/Video.js";
 
 export const update = async (req, res, next) => {
   if (req.params.id === req.user.id) {
@@ -41,10 +42,10 @@ export const getUser = async (req, res, next) => {
 };
 export const subscribe = async (req, res, next) => {
     try {
-        await User.findById(req.user.id , {
+        await User.findByIdAndUpdate(req.user.id , {
             $push: {subscribedUsers: req.params.id}
         })
-        await User.findById(req.params.id, {
+        await User.findByIdAndUpdate(req.params.id, {
             $inc : {subscribers : 1}
         })
 
@@ -53,6 +54,19 @@ export const subscribe = async (req, res, next) => {
         next(error);
     }
 };
-export const unsubscribe = async (req, res, next) => {};
-export const like = async (req, res, next) => {};
+export const unsubscribe = async (req, res, next) => {
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      $pull: {subscribedUsers : req.params.id},
+    });
+    await User.findByIdAndUpdate(req.params.id , {
+      $inc: {subscibers: -1},
+    })
+  } catch (error) {
+    next(error)
+  }
+};
+export const like = async (req, res, next) => {
+ 
+};
 export const dislike = async (req, res, next) => {};
