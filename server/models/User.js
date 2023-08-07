@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema(
     img: {
       type: String,
     },
-    subscibers: {
+    subscribers: {
       type: Number,
       default: 0,
     },
