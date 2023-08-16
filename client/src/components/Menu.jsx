@@ -80,7 +80,11 @@ const Item = styled.div`
   align-items: center;
   cursor: pointer;
   gap: 20px;
-  padding: 7.5px 0;
+  padding: 7.5px 2px;
+  border-radius : 3px;
+  &:hover {
+    background-color : ${({theme}) => theme.soft}
+  }
 `;
 
 const Hr = styled.hr`
@@ -121,10 +125,12 @@ const Menu = ({darkMode , setDarkMode}) => {
           AniTube
         </Logo>
       </Link>
+      <Link to={"/"} style={{textDecoration : "none", color : "inherit"}}>
         <Item>
           <HomeIcon />
           Home
         </Item>
+      </Link>
         <Item>
           <ExploreOutlinedIcon />
           Explore
@@ -145,10 +151,12 @@ const Menu = ({darkMode , setDarkMode}) => {
         <Hr />
         <Login>
           Sign in to like Videos, comment, and subscribe.
-          <Button>
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
+          <Link to={"/signin"}>
+            <Button>
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Link>
         </Login>
         <Hr />
         <Title>
