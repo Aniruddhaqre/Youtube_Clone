@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
+
+
 const Container = styled.div`
   width: ${({type}) => type !== "sm" && "360px"};
   margin-bottom: ${({type}) => type === "sm" ? "10px" : "45px"};
@@ -54,19 +56,19 @@ font-size :  ${({type}) => type === "sm" ? "10px" : "14px"};
 color : ${({theme} ) => theme.textSoft};
 `;
 
-const Card = ({type}) => {
+const Card = ({type , video}) => {
   return (
     <Link to="/video/test" style={{textDecoration: "none"}}>
     <Container type={type}>
-      <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiUNDV_EoOELrIMCwRgnniF42NmIM5Epy-6g&usqp=CAU" type={type}/>
+      <Image src={video.imgUrl} type={type}/>
       <Details type={type}>
         <ChannelImage src="https://image.winudf.com/v2/image1/bmV0LndsbHBwci5ib3lzX3Byb2ZpbGVfcGljdHVyZXNfc2NyZWVuXzBfMTY2NzUzNzYxN18wOTk/screen-0.webp?fakeurl=1&type=.webp" type={type}/>
         <Texts type={type}>
-            <Title type={type}>Best Video Ever</Title>
+            <Title type={type}>{video.title}</Title>
             <ChannelName type={type}>
                 AniTube
             </ChannelName>
-            <Info type={type}>660,655 views 1 day ago</Info>
+            <Info type={type}>{video.views} views {timeStamps(video.createdAt)}</Info>
         </Texts>
       </Details>
     </Container>
@@ -75,3 +77,29 @@ const Card = ({type}) => {
 };
 
 export default Card;
+
+function timeStamps(mongoTs, currentDate) {
+  let videoDate = mongoTs.toString().split("-");
+  
+
+  let date = {
+    year : videoDate[0],
+    month : videoDate[1],
+    day : videoDate[2].split("T")[0],
+    
+  };
+
+  let video = new Date(`${date.year}-${date.month}-${date.day}`)
+  console.log(video);
+
+  console.log(video.getFullYear())
+
+  let nowDate = new Date();
+  // console.log(nowDate.)
+
+  // console.log(date)
+  
+  
+
+  return videoDate;
+}

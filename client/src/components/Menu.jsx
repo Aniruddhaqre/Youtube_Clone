@@ -22,14 +22,13 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   flex: 1;
   min-width: 12rem;
-  background-color: ${({theme}) => theme.bgLighter};
+  background-color: ${({ theme }) => theme.bgLighter};
   height: 100vh;
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   font-size: 14px;
   position: sticky;
   top: 0;
-  overflow-y : hidden;
-  
+  overflow-y: hidden;
 
   /* width */
   &::-webkit-scrollbar {
@@ -38,15 +37,14 @@ const Container = styled.div`
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: ${({theme}) => theme.bgLighter};
-    margin-top : 45px;
+    background: ${({ theme }) => theme.bgLighter};
+    margin-top: 45px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
     background: #444;
-    border-radius : 10px;
-    
+    border-radius: 10px;
   }
 
   /* Handle on hover */
@@ -54,8 +52,8 @@ const Container = styled.div`
     background: #555;
   }
 
-  &:hover{
-    overflow-y : scroll
+  &:hover {
+    overflow-y: scroll;
   }
 `;
 
@@ -81,9 +79,9 @@ const Item = styled.div`
   cursor: pointer;
   gap: 20px;
   padding: 7.5px 2px;
-  border-radius : 3px;
+  border-radius: 3px;
   &:hover {
-    background-color : ${({theme}) => theme.soft}
+    background-color: ${({ theme }) => theme.soft};
   }
 `;
 
@@ -109,36 +107,40 @@ const Button = styled.button`
 `;
 
 const Title = styled.h2`
-    font-size: 14px;
-    font-weight : 500;
-    color: #aaaaaa;
-    margin-bottom: 20px;
-`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
 
-const Menu = ({darkMode , setDarkMode}) => {
+const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
-      <Link to={"/" } style={{textDecoration : "none", color : "inherit"}}>
-        <Logo>
-          <Img src={AniTube} />
-          AniTube
-        </Logo>
-      </Link>
-      <Link to={"/"} style={{textDecoration : "none", color : "inherit"}}>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
-      </Link>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
+        <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo>
+            <Img src={AniTube} />
+            AniTube
+          </Logo>
+        </Link>
+        <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
+        </Link>
+        <Link to={"/trends"} style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <ExploreOutlinedIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link to={"/subscriptions"} style={{textDecoration : "none", color: "inherit"}}>
         <Item>
           <SubscriptionsOutlinedIcon />
           Subscriptions
         </Item>
+        </Link>
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />
@@ -159,9 +161,7 @@ const Menu = ({darkMode , setDarkMode}) => {
           </Link>
         </Login>
         <Hr />
-        <Title>
-            BEST OF ANITUBE
-        </Title>
+        <Title>BEST OF ANITUBE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
